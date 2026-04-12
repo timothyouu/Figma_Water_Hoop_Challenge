@@ -1,0 +1,244 @@
+/* Shared screen styles */
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px;
+  overflow-y: auto;
+  animation: screenFadeIn 0.3s ease-out;
+}
+
+@keyframes screenFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Landing Screen */
+.landing-screen {
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+}
+
+.landing-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a6b3a 0%, #0d4a26 100%);
+  border: 3px solid #2ecc40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 4px;
+  box-shadow: 0 0 20px rgba(46, 204, 64, 0.3);
+}
+
+.landing-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--text-gold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.landing-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.btn-play {
+  width: 80%;
+  background: linear-gradient(180deg, var(--btn-green) 0%, var(--btn-green-dark) 100%);
+  color: white;
+  font-size: 1.1rem;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(46, 204, 64, 0.4);
+}
+
+.btn-hof {
+  width: 80%;
+  background: linear-gradient(180deg, var(--btn-yellow) 0%, var(--btn-yellow-dark) 100%);
+  color: #333;
+  font-size: 1rem;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(241, 196, 15, 0.3);
+}
+
+/* Times Up Screen */
+.timesup-screen {
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: center;
+  padding-top: 28px;
+  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+}
+
+.timesup-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text-white);
+}
+
+.timesup-score-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.timesup-score {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--text-gold);
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.timesup-section {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 4px;
+}
+
+.timesup-section h3 {
+  font-size: 0.85rem;
+  color: var(--text-gold);
+  margin-bottom: 8px;
+}
+
+.timesup-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.timesup-input:focus {
+  border-color: var(--btn-blue);
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(180deg, var(--btn-green) 0%, var(--btn-green-dark) 100%);
+  color: white;
+  margin-top: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(46, 204, 64, 0.3);
+}
+
+.btn-skip {
+  width: 80%;
+  background: linear-gradient(180deg, var(--btn-red) 0%, var(--btn-red-dark) 100%);
+  color: white;
+  padding: 12px;
+}
+
+/* Score Submitted Screen */
+.submitted-screen {
+  justify-content: flex-start;
+  gap: 14px;
+  text-align: center;
+  padding-top: 32px;
+  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+}
+
+.submitted-badge {
+  background: linear-gradient(180deg, var(--btn-green) 0%, var(--btn-green-dark) 100%);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Hall of Fame Screen */
+.hof-screen {
+  gap: 12px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+}
+
+.hof-title {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--text-gold);
+}
+
+.hof-section {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.hof-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 6px;
+}
+
+.hof-row:last-child {
+  margin-bottom: 0;
+}
+
+.hof-rank {
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--text-gold);
+  width: 24px;
+  text-align: center;
+}
+
+.hof-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.hof-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hof-name {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.hof-score-val {
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--text-gold);
+}
+
+.hof-empty {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  padding: 20px 0;
+}
+
+.btn-back {
+  width: 80%;
+  background: linear-gradient(180deg, var(--btn-blue) 0%, var(--btn-blue-dark) 100%);
+  color: white;
+  padding: 12px;
+}

@@ -1,0 +1,289 @@
+/* Game Screen */
+.game-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a1628 0%, #132244 60%, #1a3366 100%);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  z-index: 10;
+}
+
+.game-timer {
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--text-white);
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 6px 14px;
+  border-radius: 10px;
+  min-width: 48px;
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.game-timer.warning {
+  color: var(--btn-red);
+  animation: pulse 0.5s infinite alternate;
+}
+
+.game-score {
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--text-gold);
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 6px 14px;
+  border-radius: 10px;
+  min-width: 48px;
+  text-align: center;
+}
+
+.game-canvas-area {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 12px;
+  gap: 20px;
+  z-index: 10;
+  background: linear-gradient(180deg, var(--frame-orange) 0%, var(--frame-orange-dark) 100%);
+  border-top: 3px solid rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.15);
+}
+
+.pump-btn {
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--btn-blue) 0%, var(--btn-blue-dark) 100%);
+  color: white;
+  font-weight: 900;
+  font-size: 0.75rem;
+  padding: 0;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.4);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.1s;
+}
+
+.pump-btn-label {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* fired state — brief flash on press */
+.pump-btn:active:not(.pump-cooldown) {
+  transform: scale(0.88);
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.7);
+  background: linear-gradient(180deg, var(--btn-blue-dark) 0%, #1a5276 100%);
+}
+
+/* cooldown state */
+.pump-btn.pump-cooldown {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Charge fill — sweeps from 0→360° while button is held, yellow-gold tint */
+.pump-charge-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: chargeSweep 0.7s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes chargeSweep {
+  from { background: conic-gradient(rgba(255,220,50,0.38) 0deg,   transparent 0deg); }
+  to   { background: conic-gradient(rgba(255,220,50,0.38) 360deg, transparent 360deg); }
+}
+
+/* Sweep overlay that drains to show cooldown progress */
+.pump-cooldown-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: cooldownSweep 1.75s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes cooldownSweep {
+  from { background: conic-gradient(rgba(255,255,255,0.22) 360deg, transparent 360deg); }
+  to   { background: conic-gradient(rgba(255,255,255,0.22) 0deg,   transparent 0deg);  }
+}
+
+/* Bubble */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(150, 210, 255, 0.4) 0%,
+    rgba(80, 160, 255, 0.25) 50%,
+    rgba(60, 140, 230, 0.15) 100%);
+  border: 2px solid rgba(120, 200, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  box-shadow:
+    inset 0 -4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 0 12px rgba(100, 180, 255, 0.2);
+  will-change: transform;
+}
+
+.bubble img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Hoop */
+.hoop {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Rim */
+.hoop-rim-front {
+  width: 100%;
+  height: 14px;
+  border: 5px solid var(--hoop-ring);
+  border-radius: 50%;
+  box-shadow:
+    0 0 10px rgba(255, 107, 53, 0.65),
+    0 0 22px rgba(255, 107, 53, 0.25);
+  animation: hoopGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+/* Net SVG hanging below the rim */
+.hoop-net {
+  display: block;
+  width: 88%;
+  height: 38px;
+  margin-top: -1px;
+}
+
+/* Water particles */
+.water-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(100, 180, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.water-particle:nth-child(2n) {
+  animation-duration: 5s;
+  animation-delay: -1s;
+}
+
+.water-particle:nth-child(3n) {
+  animation-duration: 3.5s;
+  animation-delay: -2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
+
+@keyframes bubblePop {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes hoopGlow {
+  from { box-shadow: 0 0 8px rgba(255, 107, 53, 0.3), inset 0 0 6px rgba(255, 107, 53, 0.1); }
+  to { box-shadow: 0 0 14px rgba(255, 107, 53, 0.6), inset 0 0 8px rgba(255, 107, 53, 0.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); opacity: 0.2; }
+  50% { transform: translateY(-8px); opacity: 0.35; }
+}
+
+.bubble.scored {
+  animation: bubblePop 0.3s ease-out forwards;
+}
+
+/* Pump jet — rising air bubbles */
+.pump-jet {
+  position: absolute;
+  bottom: 0;
+  width: 40px;
+  height: 200px;
+  pointer-events: none;
+}
+
+.pump-jet-left {
+  left: 15%;
+  transform: translateX(-50%);
+}
+
+.pump-jet-right {
+  right: 15%;
+  transform: translateX(50%);
+}
+
+.pump-jet-particle {
+  position: absolute;
+  bottom: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(200, 240, 255, 0.95),
+    rgba(100, 190, 255, 0.6) 60%,
+    rgba(60, 150, 230, 0.2));
+  border: 1px solid rgba(160, 220, 255, 0.5);
+  animation: jetBubbleRise 0.55s ease-out infinite;
+}
+
+@keyframes jetBubbleRise {
+  0% {
+    transform: translateY(0) scale(1.1);
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-190px) scale(0.15);
+    opacity: 0;
+  }
+}
