@@ -1,13 +1,13 @@
-import { useRef, useEffect, useCallback } from 'react'
-import { useState } from 'react'
+import { useRef, useEffect, useCallback, useState } from 'react'
 import useGameLoop from '../hooks/useGameLoop'
 import GameCanvas from '../components/GameCanvas'
-import PumpButton from '../components/PumpButton'
+import { useSetGameControls } from '../context/GameControlsContext'
 import '../styles/game.css'
 
 export default function GameScreen({ onTimeUp }) {
   const containerRef = useRef(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  const setControls = useSetGameControls()
 
   useEffect(() => {
     const measure = () => {
@@ -48,6 +48,29 @@ export default function GameScreen({ onTimeUp }) {
     onTimeUp: handleTimeUp,
   })
 
+  // Publish live controls to context so HandheldFrame can wire its buttons
+  useEffect(() => {
+    setControls({
+      pressLeft,
+      releaseLeft,
+      pressRight,
+      releaseRight,
+      leftCoolingDown,
+      rightCoolingDown,
+      leftCharging,
+      rightCharging,
+    })
+  }, [
+    pressLeft, releaseLeft, pressRight, releaseRight,
+    leftCoolingDown, rightCoolingDown, leftCharging, rightCharging,
+    setControls,
+  ])
+
+  // Clear controls from frame when game screen unmounts
+  useEffect(() => {
+    return () => setControls(null)
+  }, [setControls])
+
   const startedRef = useRef(false)
   useEffect(() => {
     if (dimensions.width > 0 && dimensions.height > 0 && !startedRef.current) {
@@ -73,22 +96,6 @@ export default function GameScreen({ onTimeUp }) {
             rightHeld={rightBurstActive}
           />
         )}
-      </div>
-      <div className="game-controls">
-        <PumpButton
-          direction="left"
-          onPressDown={pressLeft}
-          onPressUp={releaseLeft}
-          isCoolingDown={leftCoolingDown}
-          isCharging={leftCharging}
-        />
-        <PumpButton
-          direction="right"
-          onPressDown={pressRight}
-          onPressUp={releaseRight}
-          isCoolingDown={rightCoolingDown}
-          isCharging={rightCharging}
-        />
       </div>
     </div>
   )
