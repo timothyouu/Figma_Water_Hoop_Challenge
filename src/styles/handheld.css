@@ -1,3 +1,5 @@
+/* === Handheld Water Toy Frame === */
+
 .handheld-frame {
   position: relative;
   width: clamp(300px, 88vw, 420px);
@@ -5,7 +7,6 @@
   max-height: 95svh;
   background: linear-gradient(160deg, var(--frame-orange-light) 0%, var(--frame-orange) 40%, var(--frame-orange-dark) 100%);
   border-radius: 18px 18px 22px 22px;
-  padding: 0;
   box-shadow:
     0 0 0 4px var(--frame-orange-dark),
     0 12px 40px rgba(0, 0, 0, 0.55),
@@ -16,50 +17,31 @@
   overflow: hidden;
 }
 
-/* Top bar — brand label + decorative screws */
-.handheld-top-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px 8px;
-  flex-shrink: 0;
-}
-
-.handheld-brand {
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Decorative corner screws */
-.handheld-corner-screw {
+/* Golden dome bumps at top corners */
+.handheld-dome {
   position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #c45e12, #7a3a0a);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.15);
+  background: radial-gradient(circle at 35% 30%, #fce97a, #e8a820 50%, #9a6808);
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.45),
+    inset 0 2px 5px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 2;
 }
 
-.handheld-corner-screw--right {
-  left: auto;
-  right: 14px;
-}
+.handheld-dome--left  { left: 12px; }
+.handheld-dome--right { right: 12px; }
 
 /* Water window — inset frame around the clear play area */
 .handheld-water-window {
   flex: 1;
-  margin: 0 14px;
+  margin: 50px 14px 0;
   border-radius: 10px;
   padding: 4px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.25) 100%);
   box-shadow:
     inset 0 3px 8px rgba(0, 0, 0, 0.6),
     inset 0 0 0 1px rgba(0, 0, 0, 0.3),
@@ -80,10 +62,97 @@
   min-height: 0;
 }
 
-/* Base strip at the bottom */
+/* Base strip — contains brand label + pump buttons */
 .handheld-base {
-  height: 14px;
   flex-shrink: 0;
+  padding: 8px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.handheld-brand {
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.handheld-base-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Red pump buttons */
+.handheld-pump-btn {
+  position: relative;
+  overflow: hidden;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 30%, #ff5040, #cc1a0a 60%, #8a0e06);
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.45),
+    0 0 0 3px rgba(0, 0, 0, 0.25),
+    inset 0 2px 5px rgba(255, 255, 255, 0.3),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.handheld-pump-btn:active:not(.handheld-pump-btn--cooling):not(.handheld-pump-btn--inactive) {
+  transform: scale(0.88);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 0 3px rgba(0, 0, 0, 0.25),
+    inset 0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.handheld-pump-btn--inactive {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.handheld-pump-btn--cooling {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Charge and cooldown overlays — mirrors game.css but with unique keyframe names */
+.handheld-pump-charge {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: hpChargeSweep 0.7s linear forwards;
+  pointer-events: none;
+}
+
+.handheld-pump-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: hpCooldownSweep 1.75s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes hpChargeSweep {
+  from { background: conic-gradient(rgba(255, 220, 50, 0.38) 0deg,   transparent 0deg); }
+  to   { background: conic-gradient(rgba(255, 220, 50, 0.38) 360deg, transparent 360deg); }
+}
+
+@keyframes hpCooldownSweep {
+  from { background: conic-gradient(rgba(255, 255, 255, 0.22) 360deg, transparent 360deg); }
+  to   { background: conic-gradient(rgba(255, 255, 255, 0.22) 0deg,   transparent 0deg);  }
 }
 
 @media (max-height: 580px) {
@@ -93,10 +162,15 @@
   }
 
   .handheld-water-window {
-    margin: 0 10px;
+    margin: 50px 10px 0;
   }
 
-  .handheld-top-bar {
-    padding: 7px 16px 6px;
+  .handheld-base {
+    padding: 6px 16px 10px;
+  }
+
+  .handheld-pump-btn {
+    width: 44px;
+    height: 44px;
   }
 }
