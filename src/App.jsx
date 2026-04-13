@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { GameControlsProvider } from './context/GameControlsContext.jsx'
 import HandheldFrame from './components/HandheldFrame'
 import LandingScreen from './screens/LandingScreen'
 import GameScreen from './screens/GameScreen'
@@ -16,8 +17,7 @@ export default function App() {
     setScreen('timesup')
   }
 
-  const handleSubmitted = (playerName) => {
-    // Phase 5 will POST to Supabase here
+  const handleSubmitted = () => {
     setScreen('submitted')
   }
 
@@ -66,8 +66,10 @@ export default function App() {
   }
 
   return (
-    <HandheldFrame>
-      {renderScreen()}
-    </HandheldFrame>
+    <GameControlsProvider>
+      <HandheldFrame>
+        {renderScreen()}
+      </HandheldFrame>
+    </GameControlsProvider>
   )
 }
