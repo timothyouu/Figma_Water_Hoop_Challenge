@@ -19,28 +19,14 @@
   justify-content: center;
   gap: 16px;
   text-align: center;
-  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+  background: var(--screen-bg);
 }
 
-.landing-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #1a6b3a 0%, #0d4a26 100%);
-  border: 3px solid #2ecc40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 4px;
-  box-shadow: 0 0 20px rgba(46, 204, 64, 0.3);
-}
 
 .landing-title {
   font-size: 1.6rem;
   font-weight: 900;
   color: var(--text-gold);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   margin: 0;
   line-height: 1.1;
 }
@@ -53,20 +39,18 @@
 
 .btn-play {
   width: 80%;
-  background: linear-gradient(180deg, var(--btn-green) 0%, var(--btn-green-dark) 100%);
+  background: var(--btn-green);
   color: white;
   font-size: 1.1rem;
   padding: 14px;
-  box-shadow: 0 4px 12px rgba(46, 204, 64, 0.4);
 }
 
 .btn-hof {
   width: 80%;
-  background: linear-gradient(180deg, var(--btn-yellow) 0%, var(--btn-yellow-dark) 100%);
+  background: var(--btn-yellow);
   color: #333;
   font-size: 1rem;
   padding: 12px;
-  box-shadow: 0 4px 12px rgba(241, 196, 15, 0.3);
 }
 
 /* Times Up Screen */
@@ -75,7 +59,7 @@
   gap: 12px;
   text-align: center;
   padding-top: 28px;
-  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+  background: var(--screen-bg);
 }
 
 .timesup-title {
@@ -93,7 +77,6 @@
   font-size: 2.4rem;
   font-weight: 900;
   color: var(--text-gold);
-  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
 }
 
 .timesup-section {
@@ -129,16 +112,15 @@
 
 .btn-submit {
   width: 100%;
-  background: linear-gradient(180deg, var(--btn-green) 0%, var(--btn-green-dark) 100%);
+  background: var(--btn-green);
   color: white;
   margin-top: 8px;
   padding: 12px;
-  box-shadow: 0 4px 12px rgba(46, 204, 64, 0.3);
 }
 
 .btn-skip {
   width: 80%;
-  background: linear-gradient(180deg, var(--btn-red) 0%, var(--btn-red-dark) 100%);
+  background: var(--btn-red);
   color: white;
   padding: 12px;
 }
@@ -149,11 +131,11 @@
   gap: 14px;
   text-align: center;
   padding-top: 32px;
-  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+  background: var(--screen-bg);
 }
 
 .submitted-badge {
-  background: linear-gradient(180deg, var(--btn-green) 0%, var(--btn-green-dark) 100%);
+  background: var(--btn-green);
   color: white;
   padding: 12px 28px;
   border-radius: 12px;
@@ -165,7 +147,7 @@
 .hof-screen {
   gap: 12px;
   text-align: center;
-  background: linear-gradient(180deg, var(--screen-bg) 0%, var(--screen-bg-light) 100%);
+  background: var(--screen-bg);
 }
 
 .hof-title {
@@ -238,7 +220,7 @@
 
 .btn-back {
   width: 80%;
-  background: linear-gradient(180deg, var(--btn-blue) 0%, var(--btn-blue-dark) 100%);
+  background: var(--btn-blue);
   color: white;
   padding: 12px;
 }

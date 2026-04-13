@@ -5,7 +5,7 @@
   width: clamp(300px, 88vw, 420px);
   aspect-ratio: 4 / 5;
   max-height: 95svh;
-  background: linear-gradient(160deg, var(--frame-orange-light) 0%, var(--frame-orange) 40%, var(--frame-orange-dark) 100%);
+  background: var(--frame-orange);
   border-radius: 18px 18px 22px 22px;
   box-shadow:
     0 0 0 4px var(--frame-orange-dark),
@@ -24,7 +24,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fce97a, #e8a820 50%, #9a6808);
+  background: #e8a820;
   box-shadow:
     0 3px 8px rgba(0, 0, 0, 0.45),
     inset 0 2px 5px rgba(255, 255, 255, 0.4),
@@ -94,7 +94,7 @@
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #ff5040, #cc1a0a 60%, #8a0e06);
+  background: #cc1a0a;
   box-shadow:
     0 5px 14px rgba(0, 0, 0, 0.45),
     0 0 0 3px rgba(0, 0, 0, 0.25),

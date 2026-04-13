@@ -41,7 +41,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(ellipse at center, #0f2557 0%, #070d1f 100%);
+  background: #1a2a4a;
 }
 
 #root {
