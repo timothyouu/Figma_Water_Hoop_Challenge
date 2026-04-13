@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GameControlsProvider } from './context/GameControlsContext.jsx'
+import { GameControlsProvider } from './context/GameControlsContext'
 import HandheldFrame from './components/HandheldFrame'
 import LandingScreen from './screens/LandingScreen'
 import GameScreen from './screens/GameScreen'

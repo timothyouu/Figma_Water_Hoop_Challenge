@@ -1,16 +1,18 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, createElement } from 'react'
 
 const GameControlsContext = createContext(null)
 const SetGameControlsContext = createContext(null)
 
 export function GameControlsProvider({ children }) {
   const [controls, setControls] = useState(null)
-  return (
-    <SetGameControlsContext.Provider value={setControls}>
-      <GameControlsContext.Provider value={controls}>
-        {children}
-      </GameControlsContext.Provider>
-    </SetGameControlsContext.Provider>
+  return createElement(
+    SetGameControlsContext.Provider,
+    { value: setControls },
+    createElement(
+      GameControlsContext.Provider,
+      { value: controls },
+      children
+    )
   )
 }
 
