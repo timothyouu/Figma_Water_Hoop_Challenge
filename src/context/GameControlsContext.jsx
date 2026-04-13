@@ -1,4 +1,4 @@
-// src/context/GameControlsContext.js
+// src/context/GameControlsContext.jsx
 import { createContext, useContext, useState } from 'react'
 
 const GameControlsContext = createContext(null)
