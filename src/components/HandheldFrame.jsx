@@ -19,6 +19,8 @@ export default function HandheldFrame({ children }) {
         <div className="handheld-brand">FigPals</div>
         <div className="handheld-base-buttons">
           <button
+            type="button"
+            aria-label="Left pump"
             className={[
               'handheld-pump-btn',
               !controls              ? 'handheld-pump-btn--inactive' : '',
@@ -35,6 +37,8 @@ export default function HandheldFrame({ children }) {
           </button>
 
           <button
+            type="button"
+            aria-label="Right pump"
             className={[
               'handheld-pump-btn',
               !controls               ? 'handheld-pump-btn--inactive' : '',
