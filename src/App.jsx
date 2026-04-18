@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { GameControlsProvider } from './context/GameControlsContext'
 import HandheldFrame from './components/HandheldFrame'
 import LandingScreen from './screens/LandingScreen'
@@ -62,6 +63,7 @@ export default function App() {
 
   return (
     <GameControlsProvider>
+      <Analytics />
       <div className="page-wrapper">
         <div className="bg-decorations" aria-hidden="true">
           <img src="/illustrations/submarine.png"     className="bg-illo bg-illo--submarine"      alt="" />
