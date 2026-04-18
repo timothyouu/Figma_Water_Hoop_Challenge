@@ -1,1 +1,88 @@
-/* App-level overrides — most styles live in styles/ directory */
+/* Page wrapper — contains both the bg layer and the centered handheld frame */
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fixed background decoration layer — sits behind everything */
+.bg-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Illustrations */
+.bg-illo {
+  position: absolute;
+  opacity: 0.88;
+  user-select: none;
+}
+
+.bg-illo--submarine {
+  width: 260px;
+  left: 60px;
+  bottom: 32%;
+  transform: rotate(-4deg);
+}
+
+.bg-illo--fish-school {
+  width: 240px;
+  right: 60px;
+  top: 14%;
+  transform: rotate(8deg);
+}
+
+.bg-illo--capybara-sushi {
+  width: 190px;
+  right: 3%;
+  bottom: 6%;
+  transform: rotate(-6deg);
+}
+
+.bg-illo--octopus-sushi {
+  width: 190px;
+  left: 3%;
+  top: 8%;
+  transform: rotate(5deg);
+}
+
+/* Floating background bubbles */
+.bg-bubble-float {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(150, 210, 255, 0.28);
+  background: rgba(150, 210, 255, 0.05);
+  animation: bgBubbleRise linear infinite;
+}
+
+@keyframes bgBubbleRise {
+  0%   { transform: translateY(0);       opacity: 0;   }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-105vh);  opacity: 0;   }
+}
+
+/* Make sure the handheld frame renders above the bg layer */
+.page-wrapper > *:last-child {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hide all illustrations on mobile */
+@media (max-width: 768px) {
+  .bg-illo { display: none; }
+}
+
+/* Larger illustrations on bigger screens */
+@media (min-width: 1200px) {
+  .bg-illo--submarine     { width: 340px; }
+  .bg-illo--fish-school   { width: 320px; }
+  .bg-illo--capybara-sushi { width: 260px; }
+  .bg-illo--octopus-sushi  { width: 260px; }
+}

@@ -50,18 +50,14 @@ export default figpals
 
 // Curated subset shown in the avatar picker
 export const pickerFigpals = [
-  { id: 'figgy',       name: 'Figgy' },
-  { id: 'cat',         name: 'Cat' },
-  { id: 'dog',         name: 'Dog' },
-  { id: 'frog',        name: 'Frog' },
-  { id: 'bird',        name: 'Bird' },
-  { id: 'boba',        name: 'Boba' },
-  { id: 'duck',        name: 'Duck' },
-  { id: 'pufferfish',  name: 'Pufferfish' },
-  { id: 'mushroom',    name: 'Mushroom' },
-  { id: 'pizza',       name: 'Pizza' },
-  { id: 'capybara',    name: 'Capybara' },
-  { id: 'rainbow',     name: 'Rainbow' },
+  { id: 'figgy',      name: 'Figgy' },
+  { id: 'cat',        name: 'Cat' },
+  { id: 'dog',        name: 'Dog' },
+  { id: 'frog',       name: 'Frog' },
+  { id: 'duck',       name: 'Duck' },
+  { id: 'pufferfish', name: 'Pufferfish' },
+  { id: 'capybara',   name: 'Capybara' },
+  { id: 'pizza',      name: 'Pizza' },
 ]
 
 export function getRandomFigpal() {

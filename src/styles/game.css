@@ -5,7 +5,7 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #0a1628 0%, #132244 60%, #1a3366 100%);
+  background: #1e3d4d;
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -91,12 +91,8 @@
 .hoop-rim-front {
   width: 100%;
   height: 14px;
-  border: 5px solid var(--hoop-ring);
+  border: 4px solid #4dd6e0;
   border-radius: 50%;
-  box-shadow:
-    0 0 10px rgba(255, 107, 53, 0.65),
-    0 0 22px rgba(255, 107, 53, 0.25);
-  animation: hoopGlow 2s ease-in-out infinite alternate;
   position: relative;
   z-index: 1;
 }
@@ -109,26 +105,18 @@
   margin-top: -1px;
 }
 
-/* Water particles */
-.water-particle {
+/* Decorative hollow bubbles */
+.bg-bubble {
   position: absolute;
-  width: 3px;
-  height: 3px;
-  background: rgba(100, 180, 255, 0.3);
   border-radius: 50%;
+  border: 2px solid rgba(100, 215, 228, 0.35);
+  background: rgba(100, 215, 228, 0.05);
   pointer-events: none;
   animation: float 4s ease-in-out infinite;
 }
 
-.water-particle:nth-child(2n) {
-  animation-duration: 5s;
-  animation-delay: -1s;
-}
-
-.water-particle:nth-child(3n) {
-  animation-duration: 3.5s;
-  animation-delay: -2s;
-}
+.bg-bubble:nth-child(2n) { animation-duration: 5.5s; }
+.bg-bubble:nth-child(3n) { animation-duration: 3.8s; }
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -146,10 +134,6 @@
   100% { transform: scale(0); opacity: 0; }
 }
 
-@keyframes hoopGlow {
-  from { box-shadow: 0 0 8px rgba(255, 107, 53, 0.3), inset 0 0 6px rgba(255, 107, 53, 0.1); }
-  to { box-shadow: 0 0 14px rgba(255, 107, 53, 0.6), inset 0 0 8px rgba(255, 107, 53, 0.2); }
-}
 
 @keyframes float {
   0%, 100% { transform: translateY(0); opacity: 0.2; }

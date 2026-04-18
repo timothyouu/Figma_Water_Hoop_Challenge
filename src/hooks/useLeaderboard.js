@@ -6,7 +6,7 @@ export default function useLeaderboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchTop5 = async () => {
+  const fetchRows = async () => {
     if (!supabase) {
       setLoading(false)
       return
@@ -17,7 +17,7 @@ export default function useLeaderboard() {
       .select('id, player_name, score, figpal_pfp, created_at')
       .order('score', { ascending: false })
       .order('created_at', { ascending: true })
-      .limit(5)
+      .limit(200)
 
     if (fetchError) {
       setError(fetchError.message)
@@ -28,7 +28,7 @@ export default function useLeaderboard() {
   }
 
   useEffect(() => {
-    fetchTop5()
+    fetchRows()
 
     if (!supabase) return
 
@@ -37,7 +37,7 @@ export default function useLeaderboard() {
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'leaderboard' },
-        () => fetchTop5()
+        () => fetchRows()
       )
       .subscribe()
 
@@ -46,5 +46,5 @@ export default function useLeaderboard() {
     }
   }, [])
 
-  return { rows, loading, error, refetch: fetchTop5 }
+  return { rows, loading, error, refetch: fetchRows }
 }

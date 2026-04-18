@@ -6,9 +6,6 @@ export default function HandheldFrame({ children }) {
 
   return (
     <div className="handheld-frame">
-      <div className="handheld-dome handheld-dome--left" />
-      <div className="handheld-dome handheld-dome--right" />
-
       <div className="handheld-water-window">
         <div className="handheld-screen">
           {children}

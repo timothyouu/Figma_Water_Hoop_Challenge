@@ -31,6 +31,12 @@
   line-height: 1.1;
 }
 
+.landing-pufferfish {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
 .landing-subtitle {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
@@ -48,7 +54,7 @@
 .btn-hof {
   width: 80%;
   background: var(--btn-yellow);
-  color: #333;
+  color: white;
   font-size: 1rem;
   padding: 12px;
 }
@@ -56,46 +62,47 @@
 /* Times Up Screen */
 .timesup-screen {
   justify-content: flex-start;
-  gap: 12px;
+  gap: 6px;
   text-align: center;
-  padding-top: 28px;
+  padding-top: 14px;
   background: var(--screen-bg);
+  overflow: hidden;
 }
 
 .timesup-title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 900;
   color: var(--text-white);
+  flex-shrink: 0;
 }
 
 .timesup-score-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
 }
 
 .timesup-score {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--text-gold);
+  flex-shrink: 0;
 }
 
+/* Scrollable form section */
 .timesup-section {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   width: 90%;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  padding: 14px;
-  margin-top: 4px;
-}
-
-.timesup-section h3 {
-  font-size: 0.85rem;
-  color: var(--text-gold);
-  margin-bottom: 8px;
+  padding: 10px 12px;
 }
 
 .timesup-input {
   width: 100%;
-  padding: 10px 12px;
+  padding: 8px 12px;
   border-radius: 8px;
   border: 2px solid rgba(255, 255, 255, 0.15);
   background: rgba(0, 0, 0, 0.3);
@@ -108,6 +115,42 @@
 
 .timesup-input:focus {
   border-color: var(--btn-blue);
+}
+
+.timesup-avatar-label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 6px 0 4px;
+}
+
+.timesup-avatar-required {
+  color: var(--btn-red);
+}
+
+.timesup-error {
+  color: var(--btn-red);
+  font-size: 0.78rem;
+  margin-top: 6px;
+}
+
+/* Post-submit inline leaderboard */
+.timesup-leaderboard {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 10px 12px;
+}
+
+.timesup-lb-title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--text-gold);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .btn-submit {
@@ -145,18 +188,23 @@
 
 /* Hall of Fame Screen */
 .hof-screen {
-  gap: 12px;
+  gap: 10px;
   text-align: center;
   background: var(--screen-bg);
+  overflow: hidden;
 }
 
 .hof-title {
   font-size: 1.2rem;
   font-weight: 900;
   color: var(--text-gold);
+  flex-shrink: 0;
 }
 
 .hof-section {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   width: 100%;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 16px;
@@ -175,6 +223,11 @@
 
 .hof-row:last-child {
   margin-bottom: 0;
+}
+
+.hof-row--me {
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
 }
 
 .hof-rank {

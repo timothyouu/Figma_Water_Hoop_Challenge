@@ -6,6 +6,11 @@ export default function LandingScreen({ onPlay, onHallOfFame }) {
       <h1 className="landing-title">
         FigPals<br />Bubble Blast!
       </h1>
+      <img
+        src="/figpals/FigPal Pufferfish.svg"
+        alt="Pufferfish"
+        className="landing-pufferfish"
+      />
       <p className="landing-subtitle">
         Pump bubbles through the hoops!
       </p>

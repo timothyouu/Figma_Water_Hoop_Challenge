@@ -143,7 +143,8 @@ export default function useGameLoop({ worldWidth, worldHeight, onTimeUp }) {
     Composite.add(engine.world, walls)
 
     const hoopConfigs = [
-      { x: worldWidth * 0.5, y: worldHeight * 0.42, id: 'hoop-1' },
+      { x: worldWidth * 0.32, y: worldHeight * 0.62, id: 'hoop-1' }, // left, lower
+      { x: worldWidth * 0.68, y: worldHeight * 0.32, id: 'hoop-2' }, // right, higher
     ]
 
     const createdHoops = hoopConfigs.map((cfg) => {

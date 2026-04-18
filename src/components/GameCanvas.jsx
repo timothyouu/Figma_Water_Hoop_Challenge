@@ -45,19 +45,19 @@ function BasketballHoop({ hoop }) {
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* Side borders of the net */}
-        <line x1="5"  y1="1" x2="2"  y2="52" stroke="rgba(255,210,170,0.6)" strokeWidth="1.5"/>
-        <line x1="85" y1="1" x2="88" y2="52" stroke="rgba(255,210,170,0.6)" strokeWidth="1.5"/>
+        <line x1="5"  y1="1" x2="2"  y2="52" stroke="rgba(100,220,235,0.55)" strokeWidth="1.5"/>
+        <line x1="85" y1="1" x2="88" y2="52" stroke="rgba(100,220,235,0.55)" strokeWidth="1.5"/>
         {/* Inner vertical strings — fan out slightly toward bottom */}
-        <line x1="22" y1="1" x2="19" y2="52" stroke="rgba(255,210,170,0.45)" strokeWidth="1"/>
-        <line x1="38" y1="1" x2="36" y2="52" stroke="rgba(255,210,170,0.45)" strokeWidth="1"/>
-        <line x1="52" y1="1" x2="52" y2="52" stroke="rgba(255,210,170,0.45)" strokeWidth="1"/>
-        <line x1="67" y1="1" x2="69" y2="52" stroke="rgba(255,210,170,0.45)" strokeWidth="1"/>
-        <line x1="78" y1="1" x2="81" y2="52" stroke="rgba(255,210,170,0.45)" strokeWidth="1"/>
+        <line x1="22" y1="1" x2="19" y2="52" stroke="rgba(100,220,235,0.4)" strokeWidth="1"/>
+        <line x1="38" y1="1" x2="36" y2="52" stroke="rgba(100,220,235,0.4)" strokeWidth="1"/>
+        <line x1="52" y1="1" x2="52" y2="52" stroke="rgba(100,220,235,0.4)" strokeWidth="1"/>
+        <line x1="67" y1="1" x2="69" y2="52" stroke="rgba(100,220,235,0.4)" strokeWidth="1"/>
+        <line x1="78" y1="1" x2="81" y2="52" stroke="rgba(100,220,235,0.4)" strokeWidth="1"/>
         {/* Horizontal mesh bands */}
-        <line x1="4"  y1="17" x2="86" y2="17" stroke="rgba(255,210,170,0.4)" strokeWidth="1"/>
-        <line x1="3"  y1="35" x2="87" y2="35" stroke="rgba(255,210,170,0.4)" strokeWidth="1"/>
+        <line x1="4"  y1="17" x2="86" y2="17" stroke="rgba(100,220,235,0.35)" strokeWidth="1"/>
+        <line x1="3"  y1="35" x2="87" y2="35" stroke="rgba(100,220,235,0.35)" strokeWidth="1"/>
         {/* Bottom edge */}
-        <path d="M 2 52 Q 45 46 88 52" fill="none" stroke="rgba(255,210,170,0.6)" strokeWidth="1.5"/>
+        <path d="M 2 52 Q 45 46 88 52" fill="none" stroke="rgba(100,220,235,0.55)" strokeWidth="1.5"/>
       </svg>
     </div>
   )
@@ -66,17 +66,26 @@ function BasketballHoop({ hoop }) {
 export default function GameCanvas({ bubbles, hoops, leftHeld, rightHeld }) {
   return (
     <div className="game-canvas-area">
-      {/* Water background particles (decorative) */}
-      {Array.from({ length: 8 }).map((_, i) => (
+      {/* Decorative water bubbles */}
+      {[
+        { left: '10%', top: '62%', size: 30 },
+        { left: '20%', top: '28%', size: 18 },
+        { left: '6%',  top: '44%', size: 14 },
+        { left: '72%', top: '58%', size: 24 },
+        { left: '84%', top: '72%', size: 16 },
+        { left: '82%', top: '44%', size: 12 },
+        { left: '55%', top: '76%', size: 20 },
+        { left: '38%', top: '16%', size: 14 },
+      ].map((b, i) => (
         <div
-          key={`particle-${i}`}
-          className="water-particle"
+          key={`bg-bubble-${i}`}
+          className="bg-bubble"
           style={{
-            left: `${10 + (i * 11) % 80}%`,
-            top: `${10 + (i * 13) % 80}%`,
-            opacity: 0.15 + (i % 3) * 0.08,
-            width: 2 + (i % 3),
-            height: 2 + (i % 3),
+            left: b.left,
+            top: b.top,
+            width: b.size,
+            height: b.size,
+            animationDelay: `${i * 0.65}s`,
           }}
         />
       ))}
