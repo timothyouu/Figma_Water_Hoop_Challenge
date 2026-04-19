@@ -120,7 +120,7 @@ export default function useGameLoop({ worldWidth, worldHeight, onTimeUp }) {
     // Wait until a bubble is scored/removed before adding more — don't forcibly evict
     if (bubblesRef.current.length >= MAX_BUBBLES) return
 
-    const x = worldWidth * 0.2 + Math.random() * worldWidth * 0.6
+    const x = worldWidth * 0.5 + (Math.random() - 0.5) * worldWidth * 0.2
     const y = worldHeight - BUBBLE_RADIUS * 2
     const bubble = createBubble(x, y, BUBBLE_RADIUS, randomFigpalId())
     Composite.add(engineRef.current.world, bubble)

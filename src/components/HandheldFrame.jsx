@@ -13,7 +13,7 @@ export default function HandheldFrame({ children }) {
       </div>
 
       <div className="handheld-base">
-        <div className="handheld-brand">FigPals</div>
+
         <div className="handheld-base-buttons">
           <button
             type="button"
