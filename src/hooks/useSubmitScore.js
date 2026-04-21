@@ -26,6 +26,7 @@ export default function useSubmitScore() {
     const nameRow = nameMatches?.[0] ?? null
 
     let rowId = null
+    let finalScore = score
 
     if (nameRow) {
       // Name already exists on the leaderboard
@@ -51,6 +52,7 @@ export default function useSubmitScore() {
         return null
       }
       rowId = nameRow.id
+      finalScore = Math.max(score, nameRow.score)
 
     } else {
       // Brand new player on this device — insert
@@ -66,10 +68,11 @@ export default function useSubmitScore() {
         return null
       }
       rowId = data?.id ?? null
+      finalScore = score
     }
 
     setStatus('saved')
-    return rowId
+    return { rowId, finalScore }
   }
 
   const reset = () => {

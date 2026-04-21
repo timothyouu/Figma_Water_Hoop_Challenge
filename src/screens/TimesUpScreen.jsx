@@ -30,27 +30,26 @@ export default function TimesUpScreen({ score, onSkip }) {
     if (!playerName.trim() || !selectedPfp) return
 
     let existingRowId = null
-    let existingScore = 0
     try {
       const saved = JSON.parse(localStorage.getItem(PLAYER_KEY))
       existingRowId = saved?.rowId ?? null
-      existingScore = saved?.score ?? 0
     } catch { /* ignore */ }
 
-    const rowId = await submit({
+    const result = await submit({
       playerName: playerName.trim(),
       score,
       figpalPfp: selectedPfp,
       existingRowId,
     })
 
-    if (rowId) {
+    if (result?.rowId) {
+      const { rowId, finalScore } = result
       setMyRowId(rowId)
       localStorage.setItem(PLAYER_KEY, JSON.stringify({
         rowId,
         playerName: playerName.trim(),
         figpalPfp: selectedPfp,
-        score: Math.max(score, existingScore),
+        score: finalScore,
       }))
     }
   }
