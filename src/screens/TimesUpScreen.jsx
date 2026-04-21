@@ -12,7 +12,7 @@ export default function TimesUpScreen({ score, onSkip }) {
   const [selectedPfp, setSelectedPfp] = useState(null)   // null = no avatar chosen yet
   const [myRowId, setMyRowId] = useState(null)
   const { submit, status, errorMsg } = useSubmitScore()
-  const { rows, loading } = useLeaderboard()
+  const { rows, loading, refetch } = useLeaderboard()
 
   // Pre-fill name + avatar from a previous session on this device
   useEffect(() => {
@@ -51,6 +51,7 @@ export default function TimesUpScreen({ score, onSkip }) {
         figpalPfp: selectedPfp,
         score: finalScore,
       }))
+      refetch()
     }
   }
 
