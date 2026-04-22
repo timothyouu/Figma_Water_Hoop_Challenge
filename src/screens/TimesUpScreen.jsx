@@ -11,7 +11,7 @@ export default function TimesUpScreen({ score, onSkip }) {
   const [playerName, setPlayerName] = useState('')
   const [selectedPfp, setSelectedPfp] = useState(null)   // null = no avatar chosen yet
   const [myRowId, setMyRowId] = useState(null)
-  const { submit, status, errorMsg } = useSubmitScore()
+  const { submit, status, errorMsg, markSaved } = useSubmitScore()
   const { rows, loading, refetch } = useLeaderboard()
 
   // Pre-fill name + avatar from a previous session on this device
@@ -44,14 +44,17 @@ export default function TimesUpScreen({ score, onSkip }) {
 
     if (result?.rowId) {
       const { rowId, finalScore } = result
-      setMyRowId(rowId)
+      // Persist to localStorage and update row highlight before showing leaderboard
       localStorage.setItem(PLAYER_KEY, JSON.stringify({
         rowId,
         playerName: playerName.trim(),
         figpalPfp: selectedPfp,
         score: finalScore,
       }))
-      refetch()
+      setMyRowId(rowId)
+      // Fetch fresh leaderboard data, then transition to the saved view
+      await refetch()
+      markSaved()
     }
   }
 

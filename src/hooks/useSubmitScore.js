@@ -5,7 +5,8 @@ export default function useSubmitScore() {
   const [status, setStatus] = useState('idle') // idle | saving | saved | error
   const [errorMsg, setErrorMsg] = useState(null)
 
-  // Returns the row id on success, null on failure
+  // Returns { rowId, finalScore } on success, null on failure.
+  // Does NOT set status='saved' — caller must call markSaved() after updating its own state.
   const submit = async ({ playerName, score, figpalPfp, existingRowId }) => {
     if (!supabase) {
       setStatus('error')
@@ -29,16 +30,17 @@ export default function useSubmitScore() {
     let finalScore = score
 
     if (nameRow) {
-      // Name already exists on the leaderboard
-      if (nameRow.id !== existingRowId) {
+      // Name already exists on the leaderboard.
+      // Compare as strings to avoid int vs string type mismatch from localStorage.
+      if (String(nameRow.id) !== String(existingRowId)) {
         // Different device — name is taken by someone else
         setStatus('error')
         setErrorMsg('That name is already taken. Pick a different one.')
         return null
       }
 
-      // Same device, same name — update score if higher, always update pfp
-      const updateData = { figpal_pfp: figpalPfp }
+      // Same device, same name — update score if higher, always update pfp + name
+      const updateData = { figpal_pfp: figpalPfp, player_name: playerName }
       if (score > nameRow.score) updateData.score = score
 
       const { error } = await supabase
@@ -55,7 +57,7 @@ export default function useSubmitScore() {
       finalScore = Math.max(score, nameRow.score)
 
     } else {
-      // Brand new player on this device — insert
+      // Brand new name — insert
       const { data, error } = await supabase
         .from('leaderboard')
         .insert({ player_name: playerName, score, figpal_pfp: figpalPfp })
@@ -71,14 +73,15 @@ export default function useSubmitScore() {
       finalScore = score
     }
 
-    setStatus('saved')
     return { rowId, finalScore }
   }
+
+  const markSaved = () => setStatus('saved')
 
   const reset = () => {
     setStatus('idle')
     setErrorMsg(null)
   }
 
-  return { submit, status, errorMsg, reset }
+  return { submit, status, errorMsg, reset, markSaved }
 }
