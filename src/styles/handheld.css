@@ -4,7 +4,6 @@
   position: relative;
   width: clamp(300px, 88vw, 420px);
   aspect-ratio: 4 / 5;
-  max-height: 95svh;
   background: var(--frame-orange);
   border-radius: 18px 18px 22px 22px;
   box-shadow:
@@ -140,7 +139,6 @@
 @media (max-height: 580px) {
   .handheld-frame {
     border-radius: 14px 14px 16px 16px;
-    max-height: 100svh;
   }
 
   .handheld-water-window {
